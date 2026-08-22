@@ -1,0 +1,25 @@
+{
+  "name": "super-searxng-skill",
+  "version": "1.0.0",
+  "description": "SearXNG web search skill for DSH with a Python stdlib backend (urllib + ThreadPoolExecutor), zero temp files, and full ConstrainedLanguage compatibility.",
+  "license": "MIT",
+  "homepage": "https://s.gba.fan/",
+  "skill": {
+    "entry": "SKILL.md",
+    "launcher_windows": "searxng.ps1",
+    "launcher_unix": "bin/searxng",
+    "backend": "searxng.py"
+  },
+  "defaults": {
+    "base_url": "https://s.gba.fan/",
+    "fallback_engines": "sogou,bing,baidu,duckduckgo,mdn,stackoverflow,wikipedia",
+    "timeout_sec": 25,
+    "max_concurrency": 4,
+    "limit": 10,
+    "retries": 3
+  },
+  "requirements": {
+    "python": ">=3.8",
+    "python_packages": []
+  }
+}

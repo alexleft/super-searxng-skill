@@ -1,0 +1,26 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+
+# Backups created by installers
+*.bak
+*.bak-*
+
+# Local config / secrets
+.env
+.env.local
+*.local

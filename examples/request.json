@@ -1,0 +1,24 @@
+{
+  "queries": [
+    {
+      "q": "DeepSeek V4 Flash 评测",
+      "language": "zh-CN",
+      "category": "general",
+      "safesearch": 1
+    },
+    {
+      "q": "DeepSeek V4 Flash benchmark",
+      "language": "en",
+      "category": "it"
+    },
+    {
+      "q": "DeepSeek V4 Flash release date",
+      "language": "en",
+      "time_range": "month"
+    }
+  ],
+  "limit": 8,
+  "merge": true,
+  "max_concurrency": 3,
+  "timeout_sec": 25
+}

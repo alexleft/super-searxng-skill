@@ -1,0 +1,13 @@
+# Default: let Git normalize text files to LF in repo, CRLF in working tree on Windows
+* text=auto
+
+# Shell / bash launchers must stay LF even on Windows checkout
+*.sh           text eol=lf
+bin/searxng    text eol=lf
+
+# Windows PowerShell scripts use CRLF
+*.ps1          text eol=crlf
+
+# Binary-ish assets (none yet, but declare explicitly)
+*.png          binary
+*.ico          binary

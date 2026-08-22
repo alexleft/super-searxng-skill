@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# searxng -- POSIX launcher for super-searxng-skill.
+#
+# Resolves python3 / python (or $SEARXNG_PYTHON) and forwards all arguments
+# to searxng.py in this script's directory.
+#
+# Usage:
+#   bin/searxng "query" --language en
+#   bin/searxng --queries a b c --merge --limit 8
+#   bin/searxng --stdin < request.json
+#
+# All long option names match the PowerShell launcher (without the leading
+# dash difference): --query, --queries, --category, --language, --page,
+# --time-range, --safesearch, --engines, --limit, --merge,
+# --max-concurrency, --timeout, --base-url, --fallback-engines,
+# --no-fallback-engines, --raw, --stdin.
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+PY_SCRIPT="$SCRIPT_DIR/searxng.py"
+
+if [ ! -f "$PY_SCRIPT" ]; then
+    echo "searxng.py not found (looked in $SCRIPT_DIR)" >&2
+    exit 1
+fi
+
+if [ -n "${SEARXNG_PYTHON:-}" ]; then
+    PY="$SEARXNG_PYTHON"
+elif command -v python3 >/dev/null 2>&1; then
+    PY="python3"
+elif command -v python >/dev/null 2>&1; then
+    PY="python"
+else
+    echo "No Python 3 interpreter found. Install Python 3 or set SEARXNG_PYTHON." >&2
+    exit 1
+fi
+
+# Force UTF-8 I/O so non-ASCII queries/results render correctly.
+export PYTHONIOENCODING="${PYTHONIOENCODING:-utf-8}"
+export PYTHONUTF8="${PYTHONUTF8:-1}"
+
+exec "$PY" "$PY_SCRIPT" "$@"
